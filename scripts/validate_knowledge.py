@@ -17,6 +17,13 @@ ID_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 AI_RE = re.compile(r"AI\s*支援(あり|なし)")
 REVIEWED_RE = re.compile(r".+\s\(\d{4}-\d{2}-\d{2}\)$")
 MAX_BODY_LINES = 200
+# 任意の拡張（必須ではない）。タグ（フロントマターのキー）も関係の種類も、自由に追加できる。
+# よく使われる関係の種類は docs/tags.md に、使われ方の実態は scripts/build_index.py の集計で分かる。
+TAG_KEY_RE = re.compile(r"^[a-z][a-z0-9_:-]*$")
+# 推奨の型（強制ではない）: 対比・批評の塊で使う中間見出し
+REVIEW_HEADINGS = ["## 要点", "## 比べたもの", "## 一致している点", "## 新しい点", "## 食い違う点",
+                   "## 更新を要する塊", "## 確かめられなかったこと", "## 出典"]
+AS_OF_RE = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 
 
 def parse_front_matter(text):
@@ -32,9 +39,11 @@ def parse_front_matter(text):
     for raw in lines[1:end]:
         if not raw.strip() or raw.lstrip().startswith("#"):
             continue
-        m = re.match(r"^([A-Za-z_]+):\s*(.*)$", raw)
+        m = re.match(r"^([A-Za-z_][A-Za-z0-9_:-]*):\s*(.*)$", raw)
         if m and not raw.startswith(" "):
             key, val = m.group(1), m.group(2).strip()
+            if key in data:
+                raise ValueError(f"キー '{key}' が重複している（複数の値は '- 値' の形の配列にする）")
             if val == "":
                 data[key] = []
             elif val.startswith("[") and val.endswith("]"):
@@ -49,7 +58,25 @@ def parse_front_matter(text):
     return data, "\n".join(lines[end + 1:])
 
 
-def check_file(path, all_ids):
+def load_registry(root):
+    """SOURCES.md（出典台帳）の表から、出典 id の集合を読む。台帳がなければ None。"""
+    p = root / "SOURCES.md"
+    if not p.exists():
+        return None
+    ids = set()
+    for ln in p.read_text(encoding="utf-8").splitlines():
+        cells = [c.strip() for c in ln.strip().strip("|").split("|")]
+        if len(cells) >= 2 and ID_RE.match(cells[0]):
+            ids.add(cells[0])
+    return ids
+
+
+def split_pair(item):
+    k, _, v = item.partition(":")
+    return k.strip(), v.strip()
+
+
+def check_file(path, all_ids, registry=None):
     errs = []
     try:
         fm, body = parse_front_matter(path.read_text(encoding="utf-8"))
@@ -92,10 +119,36 @@ def check_file(path, all_ids):
         if rel == fm["id"]:
             errs.append("related に自身の id を含めている")
 
-    # 見出しが所定の順序で、各 1 回だけ現れること
+    # --- 任意の拡張 ---
+    for key in fm:
+        if key not in REQUIRED and not TAG_KEY_RE.match(key):
+            errs.append(f"タグ（キー）は英小文字で始まり、英小文字・数字・_・:・- で書く: {key}")
+    # 関係の「種類」は自由（OSM のタグのように、使われながら育てる）。確かめるのは、書式と、行き先の存在だけ。
+    for r in fm.get("relations", []):
+        k, v = split_pair(r)
+        if not TAG_KEY_RE.match(k):
+            errs.append(f"relations の種類は英小文字・数字・ハイフン・コロンで書く: {k}")
+        elif v not in all_ids:
+            errs.append(f"relations の id が存在しない: {k}: {v}")
+    for c in fm.get("cites", []):
+        k, v = split_pair(c)
+        if registry is not None and k not in registry:
+            errs.append(f"cites の出典 id が SOURCES.md にない: {k}")
+        if not v:
+            errs.append(f"cites に該当箇所がない: {c}")
+    if "as_of" in fm and not AS_OF_RE.match(fm["as_of"]):
+        errs.append(f"as_of は YYYY-MM または YYYY-MM-DD: {fm['as_of']}")
+
+    # 見出し: 「## 要点」で始まり「## 出典」で終わる（中間の見出しは自由。同じ見出しの重複は不可）。
+    # 推奨の中間見出しは「詳しく」「よくあるまちがい」。review- の型は REVIEW_HEADINGS を参照。
     found = [l.strip() for l in body.splitlines() if l.startswith("## ")]
-    if found != HEADINGS:
-        errs.append(f"見出し構成が所定と異なる: {found}（期待: {HEADINGS}）")
+    if not found or found[0] != "## 要点":
+        errs.append(f"最初の見出しは「## 要点」にする: {found[:1]}")
+    if not found or found[-1] != "## 出典":
+        errs.append(f"最後の見出しは「## 出典」にする: {found[-1:]}")
+    dups = sorted({h for h in found if found.count(h) > 1})
+    if dups:
+        errs.append(f"見出しが重複している: {dups}")
     if len(body.splitlines()) > MAX_BODY_LINES:
         errs.append(f"本文が {MAX_BODY_LINES} 行を超えている（小さな塊に分ける）")
     return errs, fm
@@ -117,11 +170,12 @@ def main(argv):
             dup_errs.append(f"{p}: id '{i}' が {ids[i]} と重複")
         ids.setdefault(i, p)
 
+    registry = load_registry(roots[0].resolve().parent)
     failed = bool(dup_errs)
     for e in dup_errs:
         print(f"NG {e}")
     for p in files:
-        errs, _ = check_file(p, set(ids))
+        errs, _ = check_file(p, set(ids), registry)
         for e in errs:
             print(f"NG {p}: {e}")
         failed = failed or bool(errs)

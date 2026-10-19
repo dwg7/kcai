@@ -48,6 +48,11 @@ kcai（知識共創 AI）は、**AI そのものは共有せず、AI と人が�
 - `AGENTS.md` が唯一の本体。`CLAUDE.md` など製品別ファイルは `@AGENTS.md` を読み込む薄い入口にとどめ、規則を書き写さない（書き写すと食い違う）。
 - インスタンスのひな形も同じ形にする。
 
+## 拡張と問い
+
+- 知識の塊のタグ、関係の種類、見出しの中間部分は、自由に拡張してよい（原則 9）。新しいタグを作る前に、`python3 scripts/build_index.py --stats` で既存の使われ方を確かめ、近いものを再利用する。
+- 構造化は、**問う**ためにある。出典の読み合わせで得た予想外の発見は、`finding` タグや `review-` の塊で残す（`docs/asking.md`）。確認の前は `status: draft` のままにし、仮説として扱う。
+
 ## 作業時の参照先
 
 - `PRINCIPLES.md`: 原則
@@ -55,4 +60,6 @@ kcai（知識共創 AI）は、**AI そのものは共有せず、AI と人が�
 - `docs/triage.md`: 審査手順（実務）
 - `docs/instance.md`: インスタンス展開手順
 - `docs/conformance.md`: インスタンスの適合基準
+- `docs/tags.md`: タグと関係の慣習（実態の記録）
+- `docs/asking.md`: 構造化された知識に問う
 - `CONTRIBUTING.md`: 提案者向け案内
