@@ -17,10 +17,14 @@
 - `CLAUDE.md`（`@AGENTS.md` の薄い入口）
 - `knowledge/`（知識の塊）
 - `DECISIONS.md`（分野固有の意思決定記録）
+- `LICENSE`（CC0 1.0）
+- `scripts/validate_knowledge.py` と `.github/workflows/validate.yml`（形式の機械検査）
 
 初期構成は `templates/instance/` をそのまま流用できます。
 
 ## 3. 形式を固定する
+
+適合基準は `docs/conformance.md` を参照。
 
 - 知識の塊は `docs/knowledge-format.md` 準拠
 - 原則は `PRINCIPLES.md` 準拠

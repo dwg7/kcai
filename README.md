@@ -32,16 +32,18 @@ kcai では、この考え方を次のように運用します。
 - `PRINCIPLES.md`: 原則
 - `docs/knowledge-format.md`: 知識の塊の形式
 - `docs/instance.md`: インスタンスの作り方
+- `docs/conformance.md`: インスタンスが満たすべき制約（適合基準）
 - `CONTRIBUTING.md`: 提案方法と審査の流れ
 - `AGENTS.md`: AI 向け案内の本体
 - `CLAUDE.md`: `AGENTS.md` への薄い入口
 - `docs/triage.md`: 審査手順
 - `DECISIONS.md`: 決定と理由
-- `templates/instance/`: インスタンス開始用ひな形
+- `scripts/validate_knowledge.py`: 知識の塊の形式検査
+- `templates/instance/`: インスタンス開始用ひな形（検査スクリプトと CI 設定を含む）
 
 ## 謝辞
 
-本コンセプトは、大伴さんの「技術継承 AI」による問題提起を出発点としています。正式な書誌情報および謝辞の表記は、藤村の確認後に確定します（追跡先: `DECISIONS.md` の未確定事項）。
+本コンセプトは、大伴さんの「技術継承 AI」による問題提起を出発点としています。正式な書誌情報および謝辞の表記は、hfu の確認後に確定します（追跡先: `DECISIONS.md` の未確定事項）。
 
 ---
 
