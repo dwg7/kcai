@@ -53,6 +53,8 @@ kcai（知識共創 AI）は、**AI そのものは共有せず、AI と人が�
 - 知識の塊のタグ、関係の種類、見出しの中間部分は、自由に拡張してよい（原則 9）。新しいタグを作る前に、`python3 scripts/build_index.py --stats` で既存の使われ方を確かめ、近いものを再利用する。
 - 構造化は、**問う**ためにある。出典の読み合わせで得た予想外の発見は、`finding` タグや `review-` の塊で残す（`docs/asking.md`）。確認の前は `status: draft` のままにし、仮説として扱う。
 
+- **語り得ぬこと**（公開情報では確かめられない実務の勘所など）は、推測で埋めず、`unsaid` タグと本文の節で範囲外と明示する（`docs/unsaid.md`）。
+
 ## 作業時の参照先
 
 - `PRINCIPLES.md`: 原則
@@ -62,4 +64,5 @@ kcai（知識共創 AI）は、**AI そのものは共有せず、AI と人が�
 - `docs/conformance.md`: インスタンスの適合基準
 - `docs/tags.md`: タグと関係の慣習（実態の記録）
 - `docs/asking.md`: 構造化された知識に問う
+- `docs/unsaid.md`: 語り得ぬこと（公開情報の限界の扱い）
 - `CONTRIBUTING.md`: 提案者向け案内

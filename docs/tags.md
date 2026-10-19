@@ -11,7 +11,9 @@
 | `as_of` | `2025-03-31` | 塊の内容が、いつの時点の情報か（`updated` は書いた日） |
 | `finding` | `calibration-policy-differs-by-product` | 複数の出典を読み合わせて得た**発見**（予想外の食い違い、見落とされやすい違い）。値は短い英語の識別子 |
 | `hazard` | `mixed-height-datums` | 実務で事故につながりうる点（版の混在、ツールの不具合など） |
-| `pattern` | `adoption-path` | 複数の事例に共通する型 |
+| `pattern` | `adoption-path` | 複数の事例に共通する型（仮説の場合は、識別子の末尾に `-hypothesis` を付ける慣習） |
+| `unsaid` | `pre-consultation-questions-in-practice` | **語り得ぬこと**。公開情報では確かめられず、範囲外とした領域（`docs/unsaid.md`） |
+| `layer` の追加値 | `practice` / `map` / `route` | 実務の知識（手続、検定など）、地図、入手経路 |
 
 ## よく使われている関係の種類（`relations`）
 
@@ -22,6 +24,7 @@
 | `contrasts` | 対比の相手 |
 | `supersedes` | 置き換える旧い塊（旧い塊は削除せず `deprecated` にする） |
 | `parent` / `child` | 上位／下位 |
+| `see-also` | 参照（上のどれにも当てはまらない、緩い関連） |
 
 ## 書き方
 
