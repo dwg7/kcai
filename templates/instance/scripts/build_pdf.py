@@ -10,6 +10,7 @@
 README.md にリンクされていない塊は末尾に付け、警告を出す。
 """
 import argparse
+import datetime
 import html
 import re
 import shutil
@@ -28,7 +29,12 @@ SKIP_HEADINGS = {"構成", "準拠する kcai"}
 STATUS_LABEL = {"draft": "草案（人の確認前）", "reviewed": "確認済み", "stable": "安定", "deprecated": "廃止予定"}
 
 CSS = """
-@page { size: A4; margin: 18mm 16mm; }
+@page { size: A4; margin: 20mm 16mm 18mm 16mm;
+  @bottom-center { content: counter(page) " / " counter(pages); font-size: 8pt; color: #666; }
+  @top-right { content: "草案（人の確認前）・非公開"; font-size: 8pt; color: #a00; }
+}
+.cover h1 { font-size: 24pt; border: none; margin-top: 30mm; }
+.part { page-break-before: always; font-size: 16pt; color: #334; border-bottom: 1px solid #99a; }
 body { font-family: 'IPAGothic','Noto Sans CJK JP','Hiragino Sans','Yu Gothic',sans-serif;
        font-size: 10pt; line-height: 1.7; color: #222; }
 h1 { font-size: 20pt; border-bottom: 2px solid #333; padding-bottom: 4px; }
@@ -41,15 +47,32 @@ code { font-family: 'IPAGothic', monospace; background: #f3f3f3; padding: 0 2px;
 blockquote { margin: 0.8em 0; padding: 4px 12px; border-left: 4px solid #c60; background: #fff7ee; }
 a { color: #14c; text-decoration: none; }
 .chunk { page-break-before: always; }
+.part-page + .chunk { page-break-before: avoid; }
 .meta { font-size: 8.5pt; color: #555; border: 1px solid #ccc; padding: 4px 8px; margin-bottom: 0.8em; }
 .badge { display: inline-block; padding: 0 6px; border-radius: 3px; background: #fde; font-weight: bold; }
+.toc { list-style: none; padding-left: 0; }
 .toc li { margin: 2px 0; }
+.toc-part { list-style: none; margin-top: 8px; }
+.toc-page { page-break-after: always; }
+.part-page { page-break-before: always; page-break-after: always; }
+.part-page .part { border: none; margin-top: 90mm; font-size: 22pt; page-break-before: avoid; }
 .cover { page-break-after: always; }
 """
 
 
+TITLES = {}
+
+
+def link_ids(m):
+    cid = m.group(1)
+    if cid in TITLES:
+        return '<a href="#%s">「%s」</a>' % (cid, html.escape(TITLES[cid]))
+    return "<code>%s</code>" % cid
+
+
 def inline(s):
     s = html.escape(s)
+    s = re.sub(r"`([a-z0-9][a-z0-9-]*)`", link_ids, s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
     s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"\[([^\]]+)\]\(knowledge/([a-z0-9-]+)\.md\)", r'<a href="#\2">\1</a>', s)
@@ -135,48 +158,108 @@ def strip_sections(text, skip):
     return "\n".join(out)
 
 
-def ordered_chunks(readme_text, kdir):
+def grouped_links(readme_text, kdir):
+    """README.md の「知識の索引」から、(見出し, [id...]) の組を順に取り出す。"""
     files = {p.stem: p for p in sorted(kdir.glob("*.md")) if p.name.lower() != "readme.md"}
-    order = []
-    for cid in LINK_RE.findall(readme_text):
-        if cid in files and cid not in order:
-            order.append(cid)
-    rest = [c for c in files if c not in order]
-    return order, rest, files
+    groups, cur, seen = [], None, set()
+    in_index = False
+    for ln in readme_text.splitlines():
+        m = re.match(r"^##\s+(.*)", ln)
+        if m:
+            in_index = m.group(1).strip() == "知識の索引"
+            continue
+        if not in_index:
+            continue
+        h = re.match(r"^###\s+(.*)", ln)
+        if h:
+            cur = (h.group(1).strip(), [])
+            groups.append(cur)
+            continue
+        for cid in LINK_RE.findall(ln):
+            if cid in files and cid not in seen:
+                if cur is None:
+                    cur = ("", [])
+                    groups.append(cur)
+                cur[1].append(cid)
+                seen.add(cid)
+    rest = [c for c in files if c not in seen]
+    return groups, rest, files
+
+
+def git_version(root):
+    try:
+        h = subprocess.run(["git", "-C", str(root), "rev-parse", "--short", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+        return h
+    except Exception:
+        return "不明"
 
 
 def build(root, out_html):
     readme = (root / "README.md").read_text(encoding="utf-8")
     kdir = root / "knowledge"
-    order, rest, files = ordered_chunks(readme, kdir)
+    groups, rest, files = grouped_links(readme, kdir)
     for c in rest:
         print("警告: README.md にリンクされていない塊を末尾に追加: %s" % c, file=sys.stderr)
-    ids = order + rest
+    if rest:
+        groups.append(("（索引にない塊）", rest))
 
-    parts, toc = [], []
-    for cid in ids:
-        fm, body = parse_front_matter(files[cid].read_text(encoding="utf-8"))
-        toc.append('<li><a href="#%s">%s</a> <small>(%s)</small></li>' % (cid, html.escape(fm["title"]), STATUS_LABEL.get(fm["status"], fm["status"])))
-        rev = "、".join(fm["reviewed_by"]) if fm["reviewed_by"] else "未確認"
-        meta = '<div class="meta"><span class="badge">%s</span> 確認者: %s ／ 更新: %s ／ 作成: %s</div>' % (
-            html.escape(STATUS_LABEL.get(fm["status"], fm["status"])), html.escape(rev),
-            html.escape(fm["updated"]), html.escape("、".join(fm["authors"])))
-        parts.append('<section class="chunk" id="%s"><h1>%s</h1>%s%s</section>' % (cid, html.escape(fm["title"]), meta, render_md(body, shift=1)))
-
+    data = {}
+    for _, cids in groups:
+        for cid in cids:
+            data[cid] = parse_front_matter(files[cid].read_text(encoding="utf-8"))
+    TITLES.update({cid: fm["title"] for cid, (fm, _) in data.items()})
+    n = len(data)
     counts = {}
-    for cid in ids:
-        st = parse_front_matter(files[cid].read_text(encoding="utf-8"))[0]["status"]
-        counts[st] = counts.get(st, 0) + 1
+    for fm, _ in data.values():
+        counts[fm["status"]] = counts.get(fm["status"], 0) + 1
     summary = "、".join("%s %d 件" % (STATUS_LABEL.get(k, k), v) for k, v in sorted(counts.items()))
-    about = ('<blockquote><strong>この資料について</strong>: 知識の塊 %d 件（%s）をまとめた資料です。'
-             '各塊は出典の要約で、原典の本文は転載していません。出典は各塊の末尾に示しています。'
-             '「草案」は、人による確認が済んでいないことを表します。</blockquote>' % (len(ids), summary))
-    cover = '<section class="cover">%s%s<h2>目次</h2><ol class="toc">%s</ol></section>' % (
-        render_md(strip_sections(readme, SKIP_HEADINGS)), about, "\n".join(toc))
-    doc = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><title>kcai 知識の塊（まとめ）</title><style>%s</style></head><body>%s%s</body></html>' % (CSS, cover, "\n".join(parts))
+
+    toc, parts = [], []
+    for gtitle, cids in groups:
+        if gtitle:
+            toc.append('<li class="toc-part"><strong>%s</strong></li>' % html.escape(gtitle))
+            parts.append('<section class="part-page"><h2 class="part">%s</h2></section>' % html.escape(gtitle))
+        for cid in cids:
+            fm, body = data[cid]
+            toc.append('<li><a href="#%s">%s</a> <small>(%s)</small></li>' % (cid, html.escape(fm["title"]), STATUS_LABEL.get(fm["status"], fm["status"])))
+            rev = "、".join(fm["reviewed_by"]) if fm["reviewed_by"] else "未確認"
+            meta = '<div class="meta"><span class="badge">%s</span> 確認者: %s ／ 更新: %s ／ 作成: %s</div>' % (
+                html.escape(STATUS_LABEL.get(fm["status"], fm["status"])), html.escape(rev),
+                html.escape(fm["updated"]), html.escape("、".join(fm["authors"])))
+            parts.append('<section class="chunk" id="%s"><h1>%s</h1>%s%s</section>' % (cid, html.escape(fm["title"]), meta, render_md(body, shift=1)))
+
+    # 付録: 特定の出典（既定: 日本測量協会 jsurvey.jp）に依拠する塊の一覧
+    appendix = ""
+    domain = "jsurvey.jp"
+    rows = []
+    for gtitle, cids in groups:
+        for cid in cids:
+            fm, _ = data[cid]
+            srcs = [s for s in fm["sources"] if domain in s]
+            if srcs:
+                rows.append("<tr><td><a href=\"#%s\">%s</a></td><td>%s</td></tr>" % (cid, html.escape(fm["title"]), "<br>".join(inline(s) for s in srcs)))
+    if rows:
+        appendix = ('<section class="chunk"><h1>付録　日本測量協会の公表資料を出典とする塊の一覧</h1>'
+                    '<p>この資料で、日本測量協会（%s）のページを出典に挙げている塊と、その出典です。本文の転載はせず、要約と出典の提示にとどめています。</p>'
+                    '<table><tr><th>塊</th><th>出典（協会）</th></tr>%s</table></section>' % (domain, "".join(rows)))
+
+    cover_path = root / "cover.md"
+    title = "知識の塊のまとめ"
+    if cover_path.exists():
+        ctext = cover_path.read_text(encoding="utf-8")
+        ctext = ctext.replace("{{件数}}", str(n)).replace("{{内訳}}", summary).replace("{{版}}", git_version(root)).replace("{{日付}}", datetime.date.today().isoformat())
+        m = re.match(r"^#\s+(.*)", ctext)
+        if m:
+            title = m.group(1).strip()
+        cover_html = render_md(ctext)
+    else:
+        cover_html = render_md(strip_sections(readme, SKIP_HEADINGS))
+    cover = '<section class="cover">%s</section><section class="toc-page"><h2>目次</h2><ul class="toc">%s</ul></section>' % (cover_html, "\n".join(toc))
+    doc = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><title>%s</title><style>%s</style></head><body>%s%s%s</body></html>' % (
+        html.escape(title), CSS, cover, "\n".join(parts), appendix)
     out_html.parent.mkdir(parents=True, exist_ok=True)
     out_html.write_text(doc, encoding="utf-8")
-    print("HTML を作成: %s（塊 %d 件）" % (out_html, len(ids)))
+    print("HTML を作成: %s（塊 %d 件）" % (out_html, n))
 
 
 def to_pdf(html_path, pdf_path, browser):
