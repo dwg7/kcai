@@ -339,3 +339,8 @@
 - 判断(必要と便益): 共創＝相互学習という見方と、SECI との対応(AI は連結化に強く、人は表出化と内面化に要る。共同化は kcai の外で、語り得ぬことの側にある)は、既存の整理(`docs/co-creation.md`、`docs/human-role.md`、`docs/unsaid.md`)を裏づけ、便益がある。一方で、権威を借りたように見える恐れ(原則 13)があるため、README の見出しや標語には出さず、参考として `docs/` に置き、解釈が kcai のものであること、推薦を受けていないことを明記した。
 - 実施: `docs/background-concepts.md` を新規作成。`docs/co-creation.md` に「共創は相互学習である」を加え、README と `AGENTS.md` の参照先に追加。
 - 未確認(hfu または追って確認): 名称の由来、開発協力大綱の本文の位置づけ、KCCP が知識創造理論を参照しているか。
+
+## 2026-10-21: 作業ブランチの main への取り込み(4回目)
+
+- hfu の指示で、作業ブランチ `claude/gallant-goldberg-hyk7wa` を `main` に取り込んだ(早送り)。内容: 原則 10〜13(関わり方)、`docs/distribution.md`、`docs/co-creation.md`(共創の規律、研鑽、相互学習)、`docs/background-concepts.md`(参考にする概念)、ひな形と適合基準の更新。
+- 以後の作業は、同じブランチ名で `main` から続ける。
