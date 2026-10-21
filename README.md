@@ -108,6 +108,7 @@ kcai を使う人の多くは、組織の規則のもとで働いています。
 - `docs/responsible-use.md`: 責任ある使い方（手法と位置づけの明示）
 - `docs/distribution.md`: 配り方の設計（閉じた環境でも読める形）
 - `docs/co-creation.md`: 共創の規律（蒸留ではなく、足していく作業として。提案）
+- `docs/background-concepts.md`: 参考にする概念（知識共創、知識創造理論。解釈は kcai のもの）
 - `DECISIONS.md`: 決定と理由
 - `scripts/validate_knowledge.py`: 踏み跡の形式検査
 - `templates/instance/`: インスタンス開始用ひな形（検査スクリプトと CI 設定を含む）

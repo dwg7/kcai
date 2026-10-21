@@ -76,4 +76,5 @@ kcai（Knowledge Co-created with AI、AI と共創した知識）は、**AI そ�
 - `docs/responsible-use.md`: 責任ある使い方（手法と位置づけの明示）
 - `docs/distribution.md`: 配り方の設計（閉じた環境でも読める形）
 - `docs/co-creation.md`: 共創の規律（提案）
+- `docs/background-concepts.md`: 参考にする概念（解釈は kcai のもの。推薦を受けたように示さない）
 - `CONTRIBUTING.md`: 提案者向け案内
