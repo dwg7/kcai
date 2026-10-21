@@ -292,3 +292,7 @@
 - 実施: `README.md` の冒頭に標語(日本語と英語: *Your agent leaves a trace. It helps the next person, and the next agent.*)と「30 秒でわかる kcai」(持ち込む、残す、確かめる、たどる の4段)を置いた。最初のインスタンスでの実例を1段落添えた。
 - 標語の候補(hfu が選ぶ): ①(採用中)あなたのエージェントが、踏み跡を残す。それが、次の人とそのエージェントの助けになる。 ②歩いた跡が、道になる。 ③AI は共有しない。踏み跡を共有する。 ④Bring your own agent. Leave a trace.
 - 次の課題(ポピュラリティ): ①短い紹介文(100字、X/ブログ用)と図(1枚)、②サンプルの踏み跡1件を README に載せる、③「誰が何をするか」(利用者・提案者・管理者)の1枚、④英語の README(翻訳。kcai-survey-training は日本語の分野だが、kcai は英語でも読めるようにする)。
+
+## 2026-10-21: 作業ブランチの main への取り込み(3回目)
+
+- hfu の指示で、作業ブランチ `claude/gallant-goldberg-hyk7wa` を `main` に取り込んだ(早送り)。内容: `docs/responsible-use.md`、README の標語と「30 秒でわかる kcai」。
