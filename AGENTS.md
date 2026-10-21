@@ -66,4 +66,5 @@ kcai（Knowledge Co-created with AI、AI と共創した知識）は、**AI そ�
 - `docs/asking.md`: 構造化された知識に問う
 - `docs/unsaid.md`: 語り得ぬこと（公開情報の限界の扱い）
 - `docs/human-role.md`: 人に期待されること（ケースに則した問う力）
+- `docs/responsible-use.md`: 責任ある使い方（手法と位置づけの明示）
 - `CONTRIBUTING.md`: 提案者向け案内
