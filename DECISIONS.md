@@ -203,3 +203,14 @@
 
 - `dwg7/do-survey`(北海道の公共測量の実施情報の分析)を読み、反映する価値を考察した(`docs/lessons-from-instance-1.md` の提案 10〜12)。主張の台帳(状態つき)、本文の数字の決定的な検査、観測の窓(レンズ)の明示は、kcai の概念に反映する価値がある。ただし、すべて提案であり、採否は hfu が決める。
 - インスタンス側の反映は、北海道の公共測量の需要の形を1塊(`topic-hokkaido-public-survey-demand-pattern-do-survey`)に、方法論の借用は提案にとどめた。
+
+## 2026-10-21: kcai の略称の読みを「Knowledge Co-created with AI」に改める
+
+- 提起: hfu。kcai は BYOA(bring your own agent)のための知識表現そのものであり、AI ではない。「Knowledge Co-creation AI(知識共創 AI)」の読みは、AI の製品名と誤読され、「AI そのものは共有しない」という中心の原則と食い違う。
+- 選択肢:
+  - A. **Knowledge Co-created with AI(AI と共創した知識)**: AI は共創の相手であって、kcai の本体ではない。共有するのは知識(過去分詞が名詞を修飾)であると読める。`authors` の「AI 支援あり/なし」の記録とも合う。
+  - B. Knowledge Co-creation with AI(AI との知識共創): 活動を指す読みになり、共有物が知識の塊であることが薄れる。
+  - C. 現状維持: 誤読の恐れが残る。
+- 決定(推薦): A。理由は、共有物が「知識」であることを語順が示し、AI を本体にしないため。注意点: 「AI と共創した」とあるため、AI 支援なしで書かれた塊を排除するようにも読めるが、原則は AI 支援の有無を記録することであって、AI 支援を要件とはしない(`docs/knowledge-format.md`)。この点は README に追記しない(略称の読みであり、要件ではない)。
+- 変更: `README.md`(冒頭と謝辞と起源)、`AGENTS.md` の説明。リポジトリ名 `kcai` と、インスタンスの名前は変えない。
+- 承認: hfu の提起に基づく。作業ブランチ上の変更であり、main への取り込みは hfu の指示を待つ。
