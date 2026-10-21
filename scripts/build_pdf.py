@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""README.md から辿れる知識の塊を、1 つの HTML（必要なら PDF）にまとめる。
+"""README.md から辿れる知識の踏み跡を、1 つの HTML（必要なら PDF）にまとめる。
 
 標準ライブラリのみで HTML を生成する。PDF への変換は、手元のブラウザ（Chromium 系）の
 印刷機能を呼び出す。使い方:
     python3 scripts/build_pdf.py            # build/kcai.html を作る
     python3 scripts/build_pdf.py --pdf      # さらに build/kcai.pdf を作る（ブラウザが必要）
 
-塊の並び順は、README.md の中でリンクされている順（`knowledge/<id>.md`）に従う。
-README.md にリンクされていない塊は末尾に付け、警告を出す。
+踏み跡の並び順は、README.md の中でリンクされている順（`knowledge/<id>.md`）に従う。
+README.md にリンクされていない踏み跡は末尾に付け、警告を出す。
 """
 import argparse
 import datetime
@@ -199,9 +199,9 @@ def build(root, out_html):
     kdir = root / "knowledge"
     groups, rest, files = grouped_links(readme, kdir)
     for c in rest:
-        print("警告: README.md にリンクされていない塊を末尾に追加: %s" % c, file=sys.stderr)
+        print("警告: README.md にリンクされていない踏み跡を末尾に追加: %s" % c, file=sys.stderr)
     if rest:
-        groups.append(("（索引にない塊）", rest))
+        groups.append(("（索引にない踏み跡）", rest))
 
     data = {}
     for _, cids in groups:
@@ -228,7 +228,7 @@ def build(root, out_html):
                 html.escape(fm["updated"]), html.escape("、".join(fm["authors"])))
             parts.append('<section class="chunk" id="%s"><h1>%s</h1>%s%s</section>' % (cid, html.escape(fm["title"]), meta, render_md(body, shift=1)))
 
-    # 付録: 特定の出典（既定: 日本測量協会 jsurvey.jp）に依拠する塊の一覧
+    # 付録: 特定の出典（既定: 日本測量協会 jsurvey.jp）に依拠する踏み跡の一覧
     appendix = ""
     domain = "jsurvey.jp"
     rows = []
@@ -239,12 +239,12 @@ def build(root, out_html):
             if srcs:
                 rows.append("<tr><td><a href=\"#%s\">%s</a></td><td>%s</td></tr>" % (cid, html.escape(fm["title"]), "<br>".join(inline(s) for s in srcs)))
     if rows:
-        appendix = ('<section class="chunk"><h1>付録　日本測量協会の公表資料を出典とする塊の一覧</h1>'
-                    '<p>この資料で、日本測量協会（%s）のページを出典に挙げている塊と、その出典です。本文の転載はせず、要約と出典の提示にとどめています。</p>'
-                    '<table><tr><th>塊</th><th>出典（協会）</th></tr>%s</table></section>' % (domain, "".join(rows)))
+        appendix = ('<section class="chunk"><h1>付録　日本測量協会の公表資料を出典とする踏み跡の一覧</h1>'
+                    '<p>この資料で、日本測量協会（%s）のページを出典に挙げている踏み跡と、その出典です。本文の転載はせず、要約と出典の提示にとどめています。</p>'
+                    '<table><tr><th>踏み跡</th><th>出典（協会）</th></tr>%s</table></section>' % (domain, "".join(rows)))
 
     cover_path = root / "cover.md"
-    title = "知識の塊のまとめ"
+    title = "知識の踏み跡のまとめ"
     if cover_path.exists():
         ctext = cover_path.read_text(encoding="utf-8")
         ctext = ctext.replace("{{件数}}", str(n)).replace("{{内訳}}", summary).replace("{{版}}", git_version(root)).replace("{{日付}}", datetime.date.today().isoformat())
@@ -259,7 +259,7 @@ def build(root, out_html):
         html.escape(title), CSS, cover, "\n".join(parts), appendix)
     out_html.parent.mkdir(parents=True, exist_ok=True)
     out_html.write_text(doc, encoding="utf-8")
-    print("HTML を作成: %s（塊 %d 件）" % (out_html, n))
+    print("HTML を作成: %s（踏み跡 %d 件）" % (out_html, n))
 
 
 def to_pdf(html_path, pdf_path, browser):

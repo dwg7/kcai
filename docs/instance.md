@@ -15,7 +15,7 @@
 - `README.md`（分野と運用方針）
 - `AGENTS.md`（AI 向け案内の本体）
 - `CLAUDE.md`（`@AGENTS.md` の薄い入口）
-- `knowledge/`（知識の塊）
+- `knowledge/`（知識の踏み跡）
 - `DECISIONS.md`（分野固有の意思決定記録）
 - `LICENSE`（CC0 1.0）
 - `scripts/validate_knowledge.py` と `.github/workflows/validate.yml`（形式の機械検査）
@@ -26,7 +26,7 @@
 
 適合基準は `docs/conformance.md` を参照。
 
-- 知識の塊は `docs/knowledge-format.md` 準拠
+- 知識の踏み跡は `docs/knowledge-format.md` 準拠
 - 原則は `PRINCIPLES.md` 準拠
 - ライセンスは CC0 1.0
 
@@ -36,7 +36,7 @@
 - 形式チェックの自動化有無
 - 承認者と承認条件
 
-## 5. 最初の塊を登録する
+## 5. 最初の踏み跡を登録する
 
 - 一次資料で検証できる内容を 1 つ追加
 - `status: draft` で開始し、人が確認後に更新

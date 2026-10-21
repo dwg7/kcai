@@ -1,6 +1,6 @@
 # 測量分野のインスタンス（ひな形）
 
-このリポジトリは、kcai の原則に基づく「測量分野の知識の塊」を管理するための雛形です。
+このリポジトリは、kcai の原則に基づく「測量分野の知識の踏み跡」を管理するための雛形です。
 
 ## 目的
 
@@ -11,15 +11,15 @@
 
 - `AGENTS.md`: AI 向け案内の本体
 - `CLAUDE.md`: `@AGENTS.md` の入口
-- `knowledge/`: 知識の塊
+- `knowledge/`: 知識の踏み跡
 - `DECISIONS.md`: 分野固有の判断記録
 - `scripts/validate_knowledge.py`: 形式検査（`python3 scripts/validate_knowledge.py knowledge`）
-- `scripts/build_pdf.py`: README.md から辿れる塊を 1 つの PDF にまとめる（`python3 scripts/build_pdf.py --pdf`）
+- `scripts/build_pdf.py`: README.md から辿れる踏み跡を 1 つの PDF にまとめる（`python3 scripts/build_pdf.py --pdf`）
 - `.github/workflows/validate.yml`: PR ごとに形式検査を実行
 
 ## 知識の索引
 
-（塊を追加するたびに、ここからリンクする。リンクの順序が、まとめの PDF の並び順になる。例: `- [題名](knowledge/<id>.md)`）
+（踏み跡を追加するたびに、ここからリンクする。リンクの順序が、まとめの PDF の並び順になる。例: `- [題名](knowledge/<id>.md)`）
 
 ## 管理責任者
 

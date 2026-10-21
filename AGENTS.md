@@ -4,15 +4,15 @@
 
 ## kcai とは
 
-kcai（Knowledge Co-created with AI、AI と共創した知識）は、**AI そのものは共有せず、AI と人が共創したドメイン知識を Markdown の塊として共有し、それぞれが自分の AI で鍛えていく**ためのコンセプトです。kcai は AI の名前ではなく、利用者が自分の AI を持ち込む（BYOA: bring your own agent）ための知識表現である。出発点は、大伴さんの「技術継承 AI」の問題提起です（書誌は `DECISIONS.md` の未確定事項）。
+kcai（Knowledge Co-created with AI、AI と共創した知識）は、**AI そのものは共有せず、AI と人が共創したドメイン知識を Markdown の踏み跡として共有し、それぞれが自分の AI で鍛えていく**ためのコンセプトです。kcai は AI の名前ではなく、利用者が自分の AI を持ち込む（BYOA: bring your own agent）ための知識表現である。**知識の踏み跡**（knowledge trace、旧称「知識の塊」）は、誰かがあるケースを出典をたどって確かめた跡を 1 つの Markdown に残した、共有の単位である。出発点は、大伴さんの「技術継承 AI」の問題提起です（書誌は `DECISIONS.md` の未確定事項）。
 
-- 共有するもの: 知識の塊（Markdown）。置き場所は Git のリポジトリ。
+- 共有するもの: 知識の踏み跡（Markdown）。置き場所は Git のリポジトリ。
 - 共有しないもの: AI のモデル、契約、計算費用。使う人が自分の仕事のために自分で負担する。
 
 ## 二層構造
 
 - `dwg7/kcai`（このリポジトリ）: コンセプト。原則、形式、提案と審査の決まり、インスタンスの作り方、ひな形。**知識の中身は持たない。**
-- インスタンス（別リポジトリ）: 分野ごとの知識の塊。最初は測量分野。
+- インスタンス（別リポジトリ）: 分野ごとの知識の踏み跡。最初は測量分野。
 
 ## 鍛える循環
 
@@ -50,15 +50,15 @@ kcai（Knowledge Co-created with AI、AI と共創した知識）は、**AI そ�
 
 ## 拡張と問い
 
-- 知識の塊のタグ、関係の種類、見出しの中間部分は、自由に拡張してよい（原則 9）。新しいタグを作る前に、`python3 scripts/build_index.py --stats` で既存の使われ方を確かめ、近いものを再利用する。
-- 構造化は、**問う**ためにある。出典の読み合わせで得た予想外の発見は、`finding` タグや `review-` の塊で残す（`docs/asking.md`）。確認の前は `status: draft` のままにし、仮説として扱う。
+- 知識の踏み跡のタグ、関係の種類、見出しの中間部分は、自由に拡張してよい（原則 9）。新しいタグを作る前に、`python3 scripts/build_index.py --stats` で既存の使われ方を確かめ、近いものを再利用する。
+- 構造化は、**問う**ためにある。出典の読み合わせで得た予想外の発見は、`finding` タグや `review-` の踏み跡で残す（`docs/asking.md`）。確認の前は `status: draft` のままにし、仮説として扱う。
 
 - **語り得ぬこと**（公開情報では確かめられない実務の勘所など）は、推測で埋めず、`unsaid` タグと本文の節で範囲外と明示する（`docs/unsaid.md`）。
 
 ## 作業時の参照先
 
 - `PRINCIPLES.md`: 原則
-- `docs/knowledge-format.md`: 知識の塊の形式
+- `docs/knowledge-format.md`: 知識の踏み跡の形式
 - `docs/triage.md`: 審査手順（実務）
 - `docs/instance.md`: インスタンス展開手順
 - `docs/conformance.md`: インスタンスの適合基準
