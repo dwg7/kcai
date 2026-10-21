@@ -73,6 +73,7 @@ kcai の知識の塊は、プレーンな Markdown に、**自由に増やせる
 - `AGENTS.md`: AI 向け案内の本体
 - `CLAUDE.md`: `AGENTS.md` への薄い入口
 - `docs/triage.md`: 審査手順
+- `docs/human-role.md`: 人に期待されること（ケースに則した問う力）
 - `DECISIONS.md`: 決定と理由
 - `scripts/validate_knowledge.py`: 知識の塊の形式検査
 - `templates/instance/`: インスタンス開始用ひな形（検査スクリプトと CI 設定を含む）
