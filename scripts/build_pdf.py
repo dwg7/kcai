@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""README.md から辿れる知識の踏み跡を、1 つの HTML（必要なら PDF）にまとめる。
+"""README.md から辿れる踏み跡を、1 つの HTML（必要なら PDF）にまとめる。
 
 標準ライブラリのみで HTML を生成する。PDF への変換は、手元のブラウザ（Chromium 系）の
 印刷機能を呼び出す。使い方:
@@ -244,7 +244,7 @@ def build(root, out_html):
                     '<table><tr><th>踏み跡</th><th>出典（協会）</th></tr>%s</table></section>' % (domain, "".join(rows)))
 
     cover_path = root / "cover.md"
-    title = "知識の踏み跡のまとめ"
+    title = "踏み跡のまとめ"
     if cover_path.exists():
         ctext = cover_path.read_text(encoding="utf-8")
         ctext = ctext.replace("{{件数}}", str(n)).replace("{{内訳}}", summary).replace("{{版}}", git_version(root)).replace("{{日付}}", datetime.date.today().isoformat())

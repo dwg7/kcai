@@ -1,6 +1,6 @@
 # 測量分野のインスタンス（ひな形）
 
-このリポジトリは、kcai の原則に基づく「測量分野の知識の踏み跡」を管理するための雛形です。
+このリポジトリは、kcai の原則に基づく「測量分野の踏み跡」を管理するための雛形です。
 
 ## 目的
 
@@ -11,7 +11,7 @@
 
 - `AGENTS.md`: AI 向け案内の本体
 - `CLAUDE.md`: `@AGENTS.md` の入口
-- `knowledge/`: 知識の踏み跡
+- `knowledge/`: 踏み跡
 - `DECISIONS.md`: 分野固有の判断記録
 - `scripts/validate_knowledge.py`: 形式検査（`python3 scripts/validate_knowledge.py knowledge`）
 - `scripts/build_pdf.py`: README.md から辿れる踏み跡を 1 つの PDF にまとめる（`python3 scripts/build_pdf.py --pdf`）

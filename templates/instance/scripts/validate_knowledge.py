@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""知識の踏み跡が docs/knowledge-format.md に適合しているか検査する。
+"""踏み跡が docs/knowledge-format.md に適合しているか検査する。
 
 標準ライブラリのみで動作する。使い方:
     python3 scripts/validate_knowledge.py [knowledge ディレクトリ ...]
