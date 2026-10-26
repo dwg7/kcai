@@ -355,3 +355,10 @@
 
 - hfu の指示で、作業ブランチ `claude/gallant-goldberg-hyk7wa` を `main` に取り込んだ(早送り)。内容: `docs/human-role.md` の「計算してくれることの二面」と三層の表、README の一文。
 - 以後の作業は、同じブランチ名で `main` から続ける。
+
+## 2026-10-26: CAI・CAL の系譜を参考概念に加える、作業ブランチの main への取り込み(6回目)
+
+- hfu の依頼で、`docs/background-concepts.md` に、CAI・CAL の系譜と kcai の対応を加えた。独立した検証者が、固有名、年次、概念、効果量を確認し、修正点(ITS の四構成の帰属、Talkomatic、Micro-PROLOG、NDPCAL の目的、Micros in Schools と MEP の区別、Noss & Hoyles の著者順、VanLehn の効果量の内訳、Bull & Kay の位置づけなど)を反映した。原文を通読して確認したのは Bush(1945)と NDPCAL の評価報告の1章で、ほかは書誌・要旨・二次資料による確認である。確認できなかったものは、未確認の事項に残した。
+- 扱い: kcai の解釈であり、影響関係や推薦を主張しない(原則 10〜13)。Bush の「踏み跡」との重なりは、名称の由来ではなく、偶然の重なりとして書いた。
+- hfu の指示(検証役の指摘を反映した段階で main に取り込んでよい)に基づき、作業ブランチ `claude/gallant-goldberg-hyk7wa` を `main` に取り込んだ(早送り)。以後の作業は、同じブランチ名で `main` から続ける。
+

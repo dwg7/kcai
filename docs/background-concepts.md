@@ -1,4 +1,4 @@
-# 参考にする概念：知識共創（JICA）と知識創造理論
+# 参考にする概念：知識共創（JICA）、知識創造理論、CAI・CAL の系譜
 
 kcai の「共創」を支える、既存の概念を整理する。**kcai は、これらの概念を参考にしているが、導出元でも、公認を受けたものでもない。** 解釈は kcai のものである（原則 13）。以下は、検索で得た二次的な資料の範囲での整理で、原典（開発協力大綱の本文、野中・竹内の著作）は未読である。
 
@@ -35,6 +35,88 @@ kcai の「共創」を支える、既存の概念を整理する。**kcai は�
 - 共通点: 一方向の移転ではなく、**相互学習**であること。日本側も学ぶ、という考え方は、kcai で出典の書き手、提案者、読む人が互いに学ぶ、という見方と通じる。
 - 違い: JICA の KCCP は、人が集まって行う研修（対面を含む）で、kcai は、公開された踏み跡の共有である。対象も、目的も、運営も別である。
 
+## CAI・CAL の系譜と kcai の対応（kcai の解釈）
+
+チャットで AI と使う kcai は、**CAI（Computer-Assisted Instruction）**や**CAL（Computer Assisted Learning）**の系譜に似た雰囲気をもつ。どこと共鳴し、どこが違うかを、確認できた事実と、kcai の解釈に分けて整理する。**kcai は、これらを参考にしているが、導出元でも、公認を受けたものでもない。**
+
+### 用語（確認の結果）
+
+| 略称 | 意味 | 備考 |
+|---|---|---|
+| CAI | Computer-Assisted Instruction | 主に米国。「教える」側から見た呼び方 |
+| CAL | Computer Assisted Learning | 主に英国。「学ぶ」側から見た呼び方。英国の国家計画 NDPCAL（1973〜77）の名称に使われた |
+| CBL | Computer Based Learning | CAL が定着する前から英国で使われた（NCET 1969、Annett & Duke 1970） |
+| CML | Computer-Managed Learning | 学習の管理（進度や成績の記録）に使う。NDPCAL の目的にも出る |
+| ITS | Intelligent Tutoring System | 学習者モデルと領域知識をもつ個別指導。Sleeman & Brown（1982）で広まった |
+| AIED | Artificial Intelligence in Education | ITS を含む研究領域 |
+
+- NDPCAL の評価報告（MacDonald ほか 1977）は、CAI を「米国の用語」で、プログラム学習の機械化が教えることに取って代わる、という典型像だと述べ、**CAI と CAL を対立させるのは単純化にすぎない**とした。代わりに、**教授型、啓示型、推測型、解放型**（instructional、revelatory、conjectural、emancipatory。訳は kcai）の四つの型を提案した。つまり、「米国は教える、英国は学ぶ」という整理は、おおまかな傾向で、当時の英国の資料自身も、慎重である。
+- 「Assisted」を「Aided」と書く例もあるが、研究上の用語としては Assisted が一般的で、NDPCAL の名称も Assisted である。
+
+### 事実の確認（2026-10-26。独立した検証者による）
+
+確認の程度に差がある。**原文を通読して確認したのは、Bush（1945）と、NDPCAL の評価報告の1章だけ**で、ほかは、書誌の記録、要旨、二次資料による確認である。標準的な引用のうち、一部は記憶による確認にとどまる（検証者が明記した）。
+
+| 主張 | 確認の結果 |
+|---|---|
+| Bush（1945）の Memex は「連想の踏み跡」と「trail blazers」を述べる | **原文で確認できた。**「There is a new profession of trail blazers, those who find delight in the task of establishing useful trails through the enormous mass of the common record.」。「a mesh of associative trails」「associative indexing」、医師が、以前の似た症例の研究で確立された踏み跡に行き当たる、という箇所もある |
+| 米国 CAI: Pressey（1926）、Skinner（1954、1958）、Crowder の分岐型プログラム（1959〜60）、PLATO（1960、PLATO IV 1972）、TUTOR（1967）、スタンフォードの CAI（1963〜）、IBM 1500（1966） | **おおむね確認できた**（一部は記憶による確認） |
+| PLATO Notes と Talkomatic | **一部修正。** PLATO Notes は Woolley（1973年夏）、Talkomatic は Doug Brown の設計（1973年秋）で、のちに Woolley が拡張した |
+| ITS: SCHOLAR（1970）、SOPHIE（1975）、BUGGY（1978）、GUIDON（Clancey。1979年の学位論文、1987年に書籍化）、Sleeman & Brown（1982）、LISP tutor（1985）、Cognitive Tutors（1995）、Bloom（1984）、E. Wenger（1987） | **確認できた**。GUIDON の教訓（MYCIN の規則には正当化や戦略が欠けていた）が、NEOMYCIN につながった |
+| ITS の四構成（領域、学習者、指導、インタフェース）は、E. Wenger（1987）が定式化した | **修正。** 単一の著者の定式化ではない。Burns & Capps（1988）が、専門家、学習者診断、指導の3モジュールを挙げ、同じ書物が、インタフェースと環境を別の章で扱う。Hartley & Sleeman（1973）が、領域知識、学習者知識、指導方略の分離を既に行っており、Wenger（1987）は四つすべてを論じる。**「3モジュールにインタフェースを加えた構成」が慣習** |
+| 開かれた学習者モデルは、Bull & Kay（2007）が提案した | **修正。** Bull & Kay（2007）は重要な枠組みだが、考案者ではない。それ以前に、Bull、Kay（scrutable モデル）、Self（1988）の仕事がある |
+| 英国 NDPCAL（1973〜77）: 約250万ポンド、約35の project（資料により30）、CET が運営 | **確認できた。** 公式の目的は、「コンピュータ支援・管理学習を、妥当な費用で、制度として定着させる」こと。「カリキュラムへの統合」を標榜したわけではない |
+| Pask の SAKI（1956年頃）、会話理論（1975、1976年の書物） | **確認できた** |
+| Parlett & Hamilton「Evaluation as Illumination」（1972、エディンバラ） | **確認できた。** ただし、NDPCAL がこれを方法として直接用いた、という証拠は見つからず、「評価の系譜が近い」までしか言えない |
+| 英国: 教育工学協会の機関誌、BJET（1970年1月） | **修正。** BJET は NCET/CET の刊行で、プログラム学習協会（APL）の機関誌は *Programmed Learning (& Educational Technology)*。APL は、1963年にはあった（設立年は確認できず）。名称は APL → APLET → AETT と変わった |
+| Micros in Schools（1981）、BBC Computer Literacy Project（1981〜） | **修正。** Micros in Schools は、DES の MEP（1980〜86）とは別の、産業省の計画（中等学校は費用の半額補助、小学校は1982年10月から）。BBC のプロジェクトは、1980年に計画、1981年6月に発表、12月に BBC Micro、1982年1月に番組 |
+| Micro-PROLOG の学校での試み | **修正。** 学校のプロジェクトは Kowalski と Richard Ennals（インペリアル・カレッジ、1980年〜、Park House Middle School）。Micro-PROLOG のシステムは、McCabe と Keith Clark（1984年の書物） |
+| O'Shea（1979）の自己改良型チューター、O'Shea & Self（1983）、Self（ランカスター）、du Boulay（サセックス） | **確認できた** |
+| Noss & Hoyles『Windows on Mathematical Meanings』（1996） | **確認できた**（著者の順は、Noss & Hoyles） |
+| Thomas & Harri-Augstein『Learning Conversations』（1991、Routledge）、Kelly のレパートリー・グリッド（Shaw & Thomas 1978） | **確認できた** |
+| Laurillard『Rethinking University Teaching』（1993、2002）の会話型フレームワーク | **確認できた**。Pask の影響は二次資料による。Pask は入力の一つで、Vygotsky、Piaget、省察的実践などもある |
+| OU の KMi（1995、初代所長 Eisenstadt）、Compendium、Cohere（2008）、ClaiMaker | **確認できた** |
+| ALT（1993）、TLTP（1992）、Dearing 報告（1997） | **確認できた** |
+| Engelbart（1962）、Licklider（1960）、Papert『Mindstorms』（1980）、Logo（1967、BBN）、Jonassen の Mindtools（1996）、Lave & Wenger（1991）、Collins ほか（1989）、Wood ほか（1976）、Polanyi（1966）、Schön（1983）、Naur（1985）、ELIZA（1966）、Weizenbaum（1976）、Illich（1971）、Clark（1983）と Kozma（1994）、Bjork（1994） | **確認できた**（一部は記憶による確認）。Logo の最初の実装には Daniel Bobrow の大きな貢献がある |
+| CSILE（1983に試作、1986に教室で使用）、Knowledge Forum（1995） | **確認できた** |
+| Nelson の CAI 批判（1970年の「No More Teachers' Dirty Looks」、1974年の書物に再録） | **一部確認。** 反復練習と不安をあおる試験を退け、学習者が選ぶ資源（ハイパーテキスト）を主張した。**正確な引用は確認できていない** |
+| 効果: VanLehn（2011）は、人間の個別指導の効果量0.79、ステップ型 ITS 0.76、サブステップ型0.40、解答型0.31 | **確認できた。** 0.76は、ステップ型 ITS に限る |
+| Kulik & Fletcher（2016）: ITS の効果量の中央値0.66（50研究） | **確認できた。** 自作の試験で大きく、標準化された試験で小さい |
+| Bloom の「2シグマ」は、再現された | **再現されていない。** von Hippel（2024）は、Anania と Burke の短い学位論文の研究と、完全習得学習を組み合わせたものだと指摘する |
+| 確認できなかったもの | プログラム学習協会の設立年、Bunderson の TICCIT での具体的な役割（MITRE が1968年にケーブルテレビ型として開始、1971年12月に NSF の契約、教材は BYU とテキサス大）、「CBT」の初出、Sharples のサセックスでの所属（記憶による） |
+
+### 系譜の要約
+
+- **米国 CAI**: ティーチング・マシンとプログラム学習（Pressey、Skinner、Crowder）→ PLATO、スタンフォードのドリル（Suppes と Atkinson）。**決まったカリキュラムを届ける**。
+- **ITS**: SCHOLAR、SOPHIE、BUGGY、GUIDON → 認知的チューター。**領域知識と学習者モデルを分けて持つ**。
+- **英国 CAL**: Pask のサイバネティクスと会話理論、NDPCAL（1973〜77）、Logo と microworlds、O'Shea の自己改良型チューター、Laurillard の会話型フレームワーク、KMi の知識メディア。**探究、会話、構造化された議論**。
+- **知識創造と学習の間**: Bush の踏み跡と trail blazers、Engelbart の人間の拡張、Papert の構成主義、Scardamalia & Bereiter の知識構築、Lave & Wenger の状況的学習、認知的徒弟制、Polanyi の暗黙知、Schön の省察、Naur の理論構築としてのプログラミング。
+
+### kcai との対応（kcai の解釈）
+
+- **ITS の構成を分けて、共有する部分だけを開いた形**と読める。領域知識（踏み跡）は、**共有され、開かれている**。学習者のモデルと指導は、**各自の AI が私的に担う**（BYOA）。GUIDON の教訓（専門家の知識の表現は、そのままでは教材にならない）に対して、「指導は各自の AI に任せ、共有物は知識に限る」という分業で応えている、と読める。
+- **Bush の踏み跡との重なり**: 「ある人が、資料の海に確立した有用な踏み跡を、別の人が辿る」という構想は、kcai の踏み跡（trace）と重なる。「踏み跡（trace）」の呼び名は、Bush ではなく、スタックトレースの比喩による（`AGENTS.md`）。重なりは偶然として扱い、由来とは言わない。
+- **会話**: チャットで使う感覚は、Pask と Laurillard の「会話型」に近い。ただし、kcai の会話の目的は、教える・学ぶより、**共有の知識を改良する**ことである。
+- **使われ方から改良する**: O'Shea の自己改良型チューターと、kcai の「使って、欠けに気づき、直して返す」は、系が使用から改良される点が同型である。違いは、改良が**人が確かめた提案**を通ること。
+- **知識構築との近さ**: Scardamalia & Bereiter の知識構築（共同体が共有の知識を改良し続ける）は、kcai の循環に最も近い教育学の理論である。
+- **確かめることの重み**: Polanyi の暗黙知、Schön の省察、Naur の理論構築は、テキストにできない知識があるという立場で、kcai の「語り得ぬこと」と「人が確かめる」の設計と整合する。
+- **構造化して問う**: KMi の Compendium や Cohere は、主張と根拠を構造化して、問える形にする試みで、kcai の `finding`、`relations`、`unsaid` に近い発想である（`docs/asking.md`）。
+- **違い**: kcai は、**学習者を試験せず、教材を出さず**、学習の成果を測らない。主産物は、**使うことで改良された共有の知識**で、学習は副産物である。
+- **古い問題の形を変えたもの**: CAI のオーサリングの手間は、LLM で下がるが、**確認の負担が人に移る**。
+- **警告として引き受けるもの**: Weizenbaum（会話は理解の幻想を生む）、Illich（学習の道具の制度化への批判）、Clark と Kozma の論争（効果を左右するのは媒体ではなく方法）、生成AI時代の認知的オフロードと、生産的な苦闘の喪失（Bjork の望ましい困難）。
+- **経験的な評価はない。** 上の効果量は、ITS と人間の個別指導についてで、kcai の効果を示すものではない。
+
+### 基礎文献（原文が開けるもの）
+
+1. Bush（1945）「As We May Think」 https://www.w3.org/History/1945/vbush/vbush.txt
+2. MacDonald, Atkin, Jenkins & Kemmis（1977）NDPCAL の評価報告の1章 https://ueaeprints.uea.ac.uk/33872/1/MacDonald%2D1977%2DComputer_Assisted_Learning.pdf
+3. Pask（1976）『Conversation Theory』 https://www.pangaro.com/pask/Pask_Conversation_Theory_(indexed).pdf
+4. Clancey（GUIDON）、Buchanan & Shortliffe（1984）第29章 https://people.dbmi.columbia.edu/~ehs7001/Buchanan-Shortliffe-1984/Chapter-29.pdf
+5. Anderson ほか（1995）「Cognitive Tutors: Lessons learned」 https://www.public.asu.edu/~kvanlehn/ITScourse2009/Readings/Anderson%20Corbett%20Koedinger%20Pelletier%201995.pdf
+6. Scardamalia（2004）「CSILE/Knowledge Forum」 https://ikit.org/fulltext/CSILE_KF.pdf
+7. Kulik & Fletcher（2016）https://apps.dtic.mil/sti/pdfs/AD1030353.pdf
+8. Kowalski「Logic as a computer language for children」 https://www.doc.ic.ac.uk/~rak/papers/Logic%20for%20Children.pdf
+
 ## 名称についての扱い
 
 - kcai の名称（Knowledge Co-created with AI）は、JICA の KCCP の名称（Knowledge Co-Creation Program）と語が似ている。**kcai は、JICA の事業ではなく、JICA の公式な取り組みや推薦を受けたものでもない。** 野中氏や関係者の推薦を受けたものでもない。そう読まれる表現を避ける（原則 13）。
@@ -48,6 +130,7 @@ kcai の「共創」を支える、既存の概念を整理する。**kcai は�
 | SECI との対応（本書）を参考として置く | AI が担う部分と人が要る部分、語り得ぬことの境界の理由が説明しやすい | 権威を借りた主張に見える恐れ。解釈であることの明記で抑える | 参考として置く（README の見出しには出さない） |
 | README の冒頭や標語に、JICA や野中の名を出す | 説明の取っかかり | 推薦を受けたように見える恐れ（原則 13） | しない |
 | 名称の関係の明記 | 誤認の予防 | 低い | 本書に置く |
+| CAI・CAL の系譜（本書）を参考として置く | 「教える機械」との違い（教材を出さず、知識を共有して改良する）と、近縁の理論を説明できる | 影響関係や推薦を主張したように見える恐れ（原則 13）。経験的な評価がない | 解釈と明記して置く |
 | 原典の確認 | 事実の裏づけ | 手間 | 必要になったときに行う（開発協力大綱の本文、野中・竹内 1995、2019） |
 
 ## 未確認の事項
@@ -55,3 +138,5 @@ kcai の「共創」を支える、既存の概念を整理する。**kcai は�
 - 「知識共創」の名称の由来と、野中理論との関係。
 - 開発協力大綱の「共創」の本文の位置づけ（2015 年版と 2023 年版）。
 - JICA の KCCP が、知識創造理論を明示的に参照しているか。
+- CAI・CAL の系譜: プログラム学習協会の設立年、TICCIT での Bunderson の役割、「CBT」の初出、Nelson の CAI 批判の正確な引用、Laurillard が Pask から受けた影響の程度（二次資料のみ）。
+- 本書の系譜の表は、原文の通読が Bush（1945）と NDPCAL の1章にとどまる。ほかの文献の確認は、書誌と要旨が中心で、引用する前に原典を確かめる。
